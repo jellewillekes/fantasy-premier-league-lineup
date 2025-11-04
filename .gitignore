@@ -1,15 +1,56 @@
 # Python
 __pycache__/
 *.py[cod]
+*.pyo
+*.so
+*.dylib
 *.egg-info/
+.eggs/
+dist/
+build/
+.wheels/
+.coverage
+htmlcov/
+.coverage.*
+.pytest_cache/
+.mypy_cache/
+.pytype/
+.cache/
+.prof
+prof.out
+
+# uv
+.uv/
 .venv/
 venv/
+
+# Env / secrets
 .env
+.env.*
 *.env
+
+# Notebooks
 .ipynb_checkpoints/
-# Data
-data/raw/*
-data/processed/*
-# OS / IDE
+
+# Data / artifacts 
+data/**
+!data/.gitkeep
+!data/README.md
+!data/schema/**
+!data/examples/**
+models/**
+!models/.gitkeep
+outputs/**
+!outputs/.gitkeep
+artifacts/**
+!artifacts/.gitkeep
+tmp/
+logs/
+*.log
+
+# --- OS / IDE ---
 .DS_Store
+Thumbs.db
 .vscode/
+.idea/
+*.code-workspace
