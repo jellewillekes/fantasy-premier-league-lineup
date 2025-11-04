@@ -1,11 +1,9 @@
-# weekly_run.py
 from __future__ import annotations
-# --- make src & notebooks importable ---
+
 import os, sys, json, math, argparse, re, unicodedata
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 sys.path.append(str(ROOT / "src"))
-# ---------------------------------------
 
 import pandas as pd
 
@@ -26,7 +24,6 @@ DATA_DIR = ROOT / "data"
 DATA_DIR.mkdir(exist_ok=True, parents=True)
 MY_TEAM_JSON = DATA_DIR / "my_team.json"
 
-# ------------- helpers: team loading & name matching -------------
 def load_my_team() -> list[str]:
     if MY_TEAM_JSON.exists():
         try:
