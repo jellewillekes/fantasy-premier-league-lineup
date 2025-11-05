@@ -54,3 +54,15 @@ Thumbs.db
 .vscode/
 .idea/
 *.code-workspace
+
+# Terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+crash.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
