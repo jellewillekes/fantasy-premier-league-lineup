@@ -16,3 +16,12 @@ run-week = "fpl_engine.run_week:main"
 
 [tool.uv]
 package = true
+
+[dependency-groups]
+dev = [
+    "black>=25.9.0",
+    "mypy>=1.18.2",
+    "pre-commit>=4.3.0",
+    "pytest>=8.4.2",
+    "ruff>=0.14.3",
+]

@@ -81,4 +81,3 @@ Below is a description of all columns available in the FPL dataset (`fpl_player_
 | value_form | Value based on recent form/price. |
 | value_season | Value based on total points/price. |
 | yellow_cards | Total yellow cards received. |
-

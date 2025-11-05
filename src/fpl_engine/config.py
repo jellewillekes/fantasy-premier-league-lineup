@@ -1,17 +1,20 @@
 from __future__ import annotations
 import os
-from typing import Iterable, Optional
+from typing import Iterable
 
 try:
-    from dotenv import load_dotenv  
+    from dotenv import load_dotenv
+
     load_dotenv()
 except Exception:
-    pass  
+    pass
+
 
 def require(keys: Iterable[str]) -> None:
     missing = [k for k in keys if not os.getenv(k)]
     if missing:
         raise RuntimeError(f"Missing required env vars: {', '.join(missing)}")
+
 
 # Example usage:
 # require(["FPL_API_BASE"])

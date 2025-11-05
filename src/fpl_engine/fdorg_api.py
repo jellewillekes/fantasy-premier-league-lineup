@@ -9,6 +9,7 @@ BASE = "https://api.football-data.org/v4"
 # TEMP: hard-coded token (replace/remove for production)
 HARDCODED_TOKEN = "8ac494b08ce44f1498053fbe13e44541"
 
+
 def _headers() -> dict:
     token = (
         os.getenv("FOOTBALL_DATA_ORG_TOKEN")
@@ -16,6 +17,7 @@ def _headers() -> dict:
         or HARDCODED_TOKEN
     )
     return {"X-Auth-Token": token}
+
 
 def get_pl_standings(season: Optional[str] = None) -> pd.DataFrame:
     url = f"{BASE}/competitions/PL/standings"
@@ -44,6 +46,7 @@ def get_pl_standings(season: Optional[str] = None) -> pd.DataFrame:
                 }
             )
     return pd.DataFrame(rows)
+
 
 def get_pl_matches(season: Optional[str] = None) -> pd.DataFrame:
     url = f"{BASE}/competitions/PL/matches"

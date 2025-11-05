@@ -3,6 +3,7 @@ from typing import Dict, List, Iterable, Optional
 import pandas as pd
 import pulp as pl
 
+
 def solve_wildcard_from_ep(
     players_df: pd.DataFrame,
     ep_by_gw: Dict[int, Dict[int, Dict[str, float]]],
@@ -22,10 +23,14 @@ def solve_wildcard_from_ep(
     exclude_ids = set(exclude_ids or [])
 
     def h_ep(pid: int) -> float:
-        return sum(ep_by_gw.get(int(pid), {}).get(gw, {}).get("mean", 0.0) for gw in gws)
+        return sum(
+            ep_by_gw.get(int(pid), {}).get(gw, {}).get("mean", 0.0) for gw in gws
+        )
 
     df = players_df.copy()
-    df = df[["id","player_name","position_name","club_name","now_cost"]].dropna(subset=["now_cost"])
+    df = df[["id", "player_name", "position_name", "club_name", "now_cost"]].dropna(
+        subset=["now_cost"]
+    )
     df["h_ep"] = df["id"].map(h_ep)
 
     # Optional exclusions
@@ -51,7 +56,10 @@ def solve_wildcard_from_ep(
 
     # Club cap
     for club in df["club_name"].dropna().unique():
-        prob += pl.lpSum(x[i] for i in idx if df.loc[i, "club_name"] == club) <= max_per_club
+        prob += (
+            pl.lpSum(x[i] for i in idx if df.loc[i, "club_name"] == club)
+            <= max_per_club
+        )
 
     # Budget
     prob += pl.lpSum(df.loc[i, "now_cost"] * x[i] for i in idx) <= float(budget)
@@ -63,7 +71,9 @@ def solve_wildcard_from_ep(
 
     status = prob.solve(pl.PULP_CBC_CMD(msg=False))
     if pl.LpStatus[status] != "Optimal":
-        raise RuntimeError(f"Wildcard solver not optimal (status={pl.LpStatus[status]}).")
+        raise RuntimeError(
+            f"Wildcard solver not optimal (status={pl.LpStatus[status]})."
+        )
 
     picked_idx = [i for i in idx if (x[i].value() or 0) > 0.5]
     squad = df.loc[picked_idx].copy()
@@ -71,5 +81,9 @@ def solve_wildcard_from_ep(
     # Nice ordering: GKP -> DEF -> MID -> FWD, then by h_ep desc
     order = {"GKP": 0, "DEF": 1, "MID": 2, "FWD": 3}
     squad["_pos"] = squad["position_name"].map(order)
-    squad = squad.sort_values(["_pos","h_ep"], ascending=[True, False]).drop(columns=["_pos"]).reset_index(drop=True)
+    squad = (
+        squad.sort_values(["_pos", "h_ep"], ascending=[True, False])
+        .drop(columns=["_pos"])
+        .reset_index(drop=True)
+    )
     return squad
