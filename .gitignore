@@ -32,7 +32,7 @@ venv/
 # Notebooks
 .ipynb_checkpoints/
 
-# Data / artifacts 
+# Data / artifacts
 data/**
 !data/.gitkeep
 !data/README.md

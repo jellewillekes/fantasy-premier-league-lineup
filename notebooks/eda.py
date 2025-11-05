@@ -1,7 +1,7 @@
 from __future__ import annotations
 import argparse
 import pandas as pd
-from common import load_universe, compute_strengths, build_ep_table, horizon_list 
+from common import load_universe, compute_strengths, build_ep_table, horizon_list
 
 
 def main():

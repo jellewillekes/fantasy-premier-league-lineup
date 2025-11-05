@@ -1,6 +1,6 @@
 # FPL Lineup (25/26)
 
-A reproducible research and optimization project to **analyze and build Fantasy Premier League (FPL)** teams for the 2025/26 season.  
+A reproducible research and optimization project to **analyze and build Fantasy Premier League (FPL)** teams for the 2025/26 season.
 The repository combines **official FPL API data** and **football-data.org** (for match results and standings) to estimate expected points (EP), evaluate team strength, and construct the **optimal lineup, wildcard, and transfers**.
 
 > Data collected from public sources for personal, non-commercial analysis.
@@ -15,7 +15,7 @@ git clone https://github.com/<you>/fpl-lineup-lab.git
 cd fpl-lineup-lab
 
 python3 -m venv .venv
-source .venv/bin/activate   
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -83,7 +83,7 @@ Each analysis script can be run directly — no Jupyter required.
 ```bash
 python notebooks/eda.py
 ```
-**Purpose:**  
+**Purpose:**
 Explore top FPL assets by expected points, value (EP/£), form, xGI/90, and defensive strength.
 
 Outputs include:
@@ -100,7 +100,7 @@ Outputs include:
 python notebooks/team_analysis.py --names "Areola, Martinez, Senesi, Ruben Dias, Gabriel, Pedro Porro, Romero, Mac Allister, Bruno Fernandes, Bruno Guimaraes, Caicedo, Enzo, Joao Pedro, Erling Haaland, Piroe" --save
 ```
 
-**Purpose:**  
+**Purpose:**
 Analyze your personal team’s expected performance over the next 4 GWs.
 
 Outputs include:
@@ -133,21 +133,21 @@ Run fast optimizations to:
 
 ## How We Select a Team
 
-1. **Gather Data:**  
-   - Pull player-level stats from the live FPL API.  
+1. **Gather Data:**
+   - Pull player-level stats from the live FPL API.
    - Get league standings and results from football-data.org.
 
-2. **Estimate Expected Points (EP):**  
-   - Model each fixture with team strength and player-level attack/defense contributions.  
+2. **Estimate Expected Points (EP):**
+   - Model each fixture with team strength and player-level attack/defense contributions.
    - Adjust by expected minutes and variance.
 
-3. **Optimize Squad:**  
-   - Wildcard optimization via linear programming.  
-   - Lineup optimization using mean–variance utility.  
+3. **Optimize Squad:**
+   - Wildcard optimization via linear programming.
+   - Lineup optimization using mean–variance utility.
    - Transfers optimized for EP gain, respecting rules.
 
-4. **Evaluate Performance:**  
-   - Compare horizon EP with actual form and points.  
+4. **Evaluate Performance:**
+   - Compare horizon EP with actual form and points.
    - Track per-position contributions and opponent difficulty.
 
 ---
@@ -200,8 +200,8 @@ python run_week.py
 ---
 
 ## Notes
-- Works on free APIs (no scraping, no credentials required).  
-- Models are simple, interpretable, and fast.  
+- Works on free APIs (no scraping, no credentials required).
+- Models are simple, interpretable, and fast.
 - Designed for experimentation and extension. (xGI, ICT, custom ML forecasts).
 
 ---

@@ -2,9 +2,10 @@
 from __future__ import annotations
 import pandas as pd
 
+
 def filter_min_sixty(players_df: pd.DataFrame, min_matches: int = 5) -> pd.DataFrame:
     """
-    Keep only players who played at least `min_matches` matches 
+    Keep only players who played at least `min_matches` matches
     and averaged at least 60 minutes per match.
     (Pure pandas filter — no network calls or caching.)
     """
